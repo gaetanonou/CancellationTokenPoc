@@ -1,0 +1,14 @@
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\bin\Debug\netcoreapp2.2\CancellationTokenPoc.Api.deps.json
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\bin\Debug\netcoreapp2.2\CancellationTokenPoc.Api.runtimeconfig.json
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\bin\Debug\netcoreapp2.2\CancellationTokenPoc.Api.runtimeconfig.dev.json
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\bin\Debug\netcoreapp2.2\CancellationTokenPoc.Api.dll
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\bin\Debug\netcoreapp2.2\CancellationTokenPoc.Api.pdb
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.csprojAssemblyReference.cache
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.csproj.CoreCompileInputs.cache
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.RazorAssemblyInfo.cache
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.RazorAssemblyInfo.cs
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.AssemblyInfoInputs.cache
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.AssemblyInfo.cs
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.RazorTargetAssemblyInfo.cache
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.dll
+C:\Users\gaeta\Projects\CancellationTokenPoc\CancellationTokenPoc.Api\obj\Debug\netcoreapp2.2\CancellationTokenPoc.Api.pdb
