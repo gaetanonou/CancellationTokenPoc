@@ -28,27 +28,21 @@ namespace CancellationTokenPoc.Api.Controllers
         public async Task<ActionResult<IEnumerable<Todo>>> Get(string searchTerms, CancellationToken cancellationToken)
         {
             Guid guid = Guid.NewGuid();
-            try 
+            try
             {
-            logger.LogInformation($"*** REQUEST STARTED {guid}***");
-
-                 IEnumerable<Todo> todos =  await Task.Run(async () => {
-                    await Task.Delay(5000);
-                    return GetTodos(searchTerms);
-                }, cancellationToken);
+                logger.LogInformation($"****** REQUEST STARTED {guid} ******");
                 
-                logger.LogInformation($"*** REQUEST FINISHED {guid} ***");
+                await Task.Delay(2000, cancellationToken);
+                IEnumerable<Todo> todos = GetTodos(searchTerms);
+                
+                logger.LogInformation($"****** REQUEST FINISHED {guid} ******");
                 return Ok(todos);
 
-            } catch (TaskCanceledException) 
+            } catch (OperationCanceledException) 
             {
-                logger.LogInformation($"*** REQUEST CANCELED {guid} ***");
-
-            } 
-            
-            
-            return NoContent();
-                
+                logger.LogWarning($"****** REQUEST CANCELED {guid} ******");
+                return NoContent();
+            }         
         }
 
 

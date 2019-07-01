@@ -3,11 +3,12 @@
     <v-layout row wrap>
         <v-flex>
             <h1>Todos</h1>
-            <v-text-field label="Search" placeholder="Search" solo @input="getTodos"></v-text-field>
-            <v-text-field label="Search debounce" placeholder="Search debounce" solo @input="getTodosDebounced"></v-text-field>
-            <v-text-field label="Search cancel" placeholder="Search cancel" solo @input="getTodosCancellable"></v-text-field>
-              <v-progress-linear v-if="loading" :indeterminate="true"></v-progress-linear>
-            <v-list v-else two-line>
+            <v-text-field placeholder="Search" solo @input="getTodos"></v-text-field>
+            <v-text-field placeholder="Search debounce" solo @input="getTodosDebounced"></v-text-field>
+            <v-text-field placeholder="Search cancel" solo @input="getTodosCancellableDebounced"></v-text-field>
+            <v-text-field placeholder="Search watch" solo v-model="searchTerms"></v-text-field>
+            <v-progress-linear v-show="loading" :indeterminate="true"></v-progress-linear>
+            <v-list v-show="!loading && todos.length" two-line>
                 <template v-for="(todo, index) in todos">
               <v-divider :key="index + '_devider'"></v-divider>
               <v-list-tile :key="index + '_list-title'">
@@ -27,9 +28,10 @@ import TodosService from '../services/TodosService';
 import { debounce } from 'lodash';
 import axios from 'axios';
 
-  export default {
+export default {
     data: () => ({
         loading: false,
+        searchTerms: '',
         todos: [],
         getTodosCancelTokenSource: null,
     }),
@@ -37,37 +39,47 @@ import axios from 'axios';
        await this.getTodos();
     },
     methods:{
-        async getTodos(newValue, cancelTokenSource){
+        async getTodos(value, cancelTokenSource){
+            console.log(`New value: ${value}`);
             this.loading = true;
-
-            console.log('Search terms: ' + newValue);
-
             try {
-                this.todos = await TodosService.getTodos(newValue, cancelTokenSource);
+                this.todos = await TodosService.getTodos(value, cancelTokenSource);
+                this.loading = false;
+
             } catch(error){
                 if (axios.isCancel(error)) {
-                    console.log('Request canceled', error.message);
+                    console.warn('Request was cancelled');
                 } else {
                     // handle error
+                    this.loading = false;
                 }
-
-            } finally{
-                this.loading = false;
             }
-         
         },
-        getTodosDebounced: debounce(async function(newValue){
-            this.getTodos(newValue);
+        getTodosDebounced: debounce(async function(value){
+            console.log('getTodosDebounced');
+            this.getTodos(value);
         }, 500),
-        getTodosCancellable: debounce(async function(newValue) {
-            
+        async getTodosCancellable(value) {
             if(this.getTodosCancelTokenSource){
                 this.getTodosCancelTokenSource.cancel();
             }
         
             this.getTodosCancelTokenSource = axios.CancelToken.source();
-            await this.getTodos(newValue, this.getTodosCancelTokenSource);
+            await this.getTodos(value, this.getTodosCancelTokenSource);
+        },
+        getTodosCancellableDebounced: debounce(async function(value) {
+            console.log('getTodosCancellable');
+            await this.getTodosCancellable(value)        
         }, 500)
-    }
+    },
+    watch: {
+     searchTerms:debounce(async function (value, oldValue) {
+         console.log('Watch search terms');
+         console.log(`Old value: ${oldValue}`);
+            if(value !== oldValue){
+                await this.getTodosCancellable(value)
+                }
+            }, 500)
+     }
   }
 </script>

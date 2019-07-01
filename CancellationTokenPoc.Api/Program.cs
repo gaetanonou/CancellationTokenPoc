@@ -19,6 +19,9 @@ namespace CancellationTokenPoc.Api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
+                .UseIISIntegration()
+                .UseIIS()
                 .UseStartup<Startup>();
     }
 }

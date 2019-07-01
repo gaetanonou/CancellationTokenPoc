@@ -4,19 +4,19 @@ export default new class TodosService {
 
     async getTodos(searchTerms, cancelTokenSource) {
 
-        let requestConfig = {
+        let config = {
             params: {
               searchTerms: searchTerms
             }
           };
 
         if(cancelTokenSource){
-            requestConfig.cancelToken = cancelTokenSource.token;
+            config.cancelToken = cancelTokenSource.token;
         }
 
 
         try {
-            const response = await axios.get('https://localhost:5001/api/todos', requestConfig);
+            const response = await axios.get('https://localhost:5001/api/todos', config);
 
             if(response.status === 200){
                 return response.data;
